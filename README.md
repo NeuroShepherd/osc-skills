@@ -7,7 +7,9 @@ This is a collection of agent skills for working with LMU Open Science Center ma
 Use the install script to add a new skill to your Posit Assistant from this repo:
 
 ```bash
-chmod +x install.sh
-./install.sh <SKILL NAME>
-# ./install.sh osc-tutorial-conversion
+chmod +x install-skill.sh
+./install-skill.sh <skill-directory>
+# ./install-skill.sh osc-tutorial-conversion
 ```
+
+The script copies the skill directory (including `SKILL.md` and any `assets/`, `references/`, or `scripts/` subdirectories) into `~/.posit/assistant/skills/<skill-name>/`. Use `--link` to create a symlink instead — though Posit Assistant may not recognize symlinked skills.

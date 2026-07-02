@@ -1,30 +1,28 @@
 #!/usr/bin/env bash
 #
-# install-skill.sh — Install the SKILL.md of a Posit Assistant skill
+# install-skill.sh — Install a Posit Assistant skill from the local repo
 #
 # Usage:
 #   ./install-skill.sh <skill-directory>
-#   ./install-skill.sh --copy <skill-directory>
+#   ./install-skill.sh --link <skill-directory>
 #
-# Installs only the SKILL.md file (not assets/) into
-#   ~/.posit/assistant/skills/<skill-name>/SKILL.md
-#
-# By default, creates a symlink so edits in-place propagate;
-# use --copy for a standalone copy.
+# Defaults to copying the skill directory into
+#   ~/.posit/assistant/skills/<skill-name>/
+# Use --link to symlink instead (Posit Assistant may not recognize symlinks).
 
 set -euo pipefail
 
 usage() {
-    echo "Usage: $0 [--copy] <skill-directory>" >&2
+    echo "Usage: $0 [--link] <skill-directory>" >&2
     exit 1
 }
 
-copy_mode=false
+link_mode=false
 skill_dir=""
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --copy) copy_mode=true; shift ;;
+        --link) link_mode=true; shift ;;
         -h|--help) usage ;;
         -*)
             echo "Unknown option: $1" >&2
@@ -51,30 +49,27 @@ if [[ ! -d "$skill_dir" ]]; then
     exit 1
 fi
 
-source_file="$skill_dir/SKILL.md"
-
-if [[ ! -f "$source_file" ]]; then
+if [[ ! -f "$skill_dir/SKILL.md" ]]; then
     echo "Error: '$skill_dir' does not contain a SKILL.md file" >&2
     exit 1
 fi
 
 skill_name=$(basename "$skill_dir")
-target_dir="$HOME/.posit/assistant/skills/$skill_name"
-target_file="$target_dir/SKILL.md"
+target="$HOME/.posit/assistant/skills/$skill_name"
 
-if [[ -e "$target_file" ]]; then
-    echo "Error: '$target_file' already exists" >&2
+if [[ -e "$target" ]]; then
+    echo "Error: '$target' already exists" >&2
     exit 1
 fi
 
-mkdir -p "$target_dir"
+mkdir -p "$HOME/.posit/assistant/skills"
 
-if "$copy_mode"; then
-    cp "$source_file" "$target_file"
-    echo "Installed '$skill_name' (copy) → $target_file"
+if "$link_mode"; then
+    abs_path=$(cd "$skill_dir" && pwd)
+    ln -s "$abs_path" "$target"
+    echo "Installed '$skill_name' (symlink) → $target → $abs_path"
+    echo "Note: Posit Assistant may not recognize symlinked skills; use a copy if it doesn't show up."
 else
-    # Resolve the source file to an absolute path for a reliable symlink
-    abs_source="$(cd "$(dirname "$source_file")" && pwd)/$(basename "$source_file")"
-    ln -s "$abs_source" "$target_file"
-    echo "Installed '$skill_name' (symlink) → $target_file → $abs_source"
+    cp -R "$skill_dir" "$target"
+    echo "Installed '$skill_name' (copy) → $target"
 fi
