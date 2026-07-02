@@ -3,7 +3,7 @@ name: osc-tutorial-conversion
 description: Instructions for converting existing OSC tutorials to match our `tutorial-template` repo
 metadata:
   author: Pat Callahan
-  version: 0.0.1
+  version: 0.0.2
 ---
 
 # OSC Tutorial Conversion
@@ -18,3 +18,4 @@ Your goal is to convert existing OSC tutorials to match the structure and style 
 6. Add the [assets](assets/assets/) folder to the tutorial, or just the contents within it if the folder already exists. This will ensure that all necessary assets are included in the tutorial.
 7. Follow the conventions in [`_quarto.yml`](assets/_quarto.yml) for the tutorial's configuration. This includes settings for the title, author, date, and any other relevant metadata.
 8. Add the custom [404 page](assets/404.qmd) to the root of the project if not already present.
+9. Update the [.gitignore](assets/.gitignore) file to include any new files or directories that should be ignored by Git.
