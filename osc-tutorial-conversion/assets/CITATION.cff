@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you refer to this tutorial, please cite it as below."
+authors:
+- family-names: "YOUR_NAME_HERE"
+  given-names: "YOUR_NAME_HERE"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+  affiliation:
+    - name: "INCLUDE RELEVANT INSTITUTION"
+      ror: "INCLUDE ROR LINK ID IF AVAILABLE"
+    - name: "INCLUDE RELEVANT INSTITUTION"
+      ror: "INCLUDE ROR LINK ID IF AVAILABLE"
+title: "TUTORIAL_TITLE_HERE"
+version: 0.0.1
+doi: "DOI_HERE_AFTER_GENERATED"
+date-released: YYYY-MM-DD
+repository-code: "https://github.com/lmu-osc/TUTORIAL_REPO"
+url: "https://lmu-osc.github.io/TUTORIAL_REPO/"
+preferred-citation:
+  authors:
+    - family-names: "YOUR_LAST_NAME_HERE"
+      given-names: "YOUR_FIRST_NAME_HERE"
+      orcid: "https://orcid.org/0000-0000-0000-0000"
+    - family-names: "Carberry"
+      given-names: "Josiah"
+      orcid: "https://orcid.org/0000-0002-1825-0097"
+  title: "TUTORIAL_TITLE_HERE"
+  year: YYYY
+  doi: "10.1000/182"
+  publisher:
+    name: "LMU Open Science Center"
+    ror: "https://ror.org/029e6qe04"
+  repository-code: "https://github.com/lmu-osc/TUTORIAL_REPO"
+  url: "https://lmu-osc.github.io/TUTORIAL_REPO/"
+  type: "book"

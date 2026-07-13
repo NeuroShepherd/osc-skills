@@ -1,28 +1,20 @@
 # Begin Project
 project:
-  type: website
+  type: tutorial-template
+  # FYI: the tutorial-template project type is defined in the lmu-osc/tutorial-template extension
 # End Project
 
 # Begin Website
 repo-url: https://github.com/lmu-osc/REPO-NAME-HERE # REPLACE WITH YOUR REPO URL
 website:
   title: "TUTORIAL TITLE HERE"
-  page-footer: 
+  page-footer:
     border: false
     center: © YYYY Max Mustermann, Erika Musterfrau, AUTHOR NAME. Published by LMU Open Science Center. Licensed under CC BY-SA 4.0.
-  search:
-    location: sidebar
-  repo-url: "{{< meta repo-url >}}"
-  repo-actions: [edit, issue]
-  back-to-top-navigation: true
-  page-navigation: true
-  favicon: assets/lmu-osc-favicon.jpg
-  margin-header: |
-    ![](/assets/lmu-osc-logo.svg){width="175"}
-  
-  
+  repo-url: https://github.com/lmu-osc/REPO-NAME-HERE
+
   navbar:
-    right: 
+    right:
       - about.qmd
     left:
       - href: index.qmd
@@ -31,13 +23,12 @@ website:
       - icon: github
         menu:
           - text: Source Code
-            href:  https://github.com/REPO-NAME-HERE
+            href: https://github.com/REPO-NAME-HERE
           - text: Report a Bug
-            href:  https://github.com/REPO-NAME-HERE/issues
+            href: https://github.com/REPO-NAME-HERE/issues
       - icon: house-heart
         url: https://www.osc.lmu.de/
-   
-        
+
   sidebar:
     style: "docked"
     contents:
@@ -61,29 +52,24 @@ website:
             # text: "topic-two Page 3 Title"
 # End Website
 
+# Begin Includes
+include-in-header:
+  - file: matomo-analytics.html
+include-after-body:
+  - file: footer/footer.html
+# End Includes
 
 # Begin Format
+# use only if needed. the default format for `tutorial-template` projects is tutorial-template-html+tutorial
+# we recommend just extending the definition below if you need to make format changes
 format:
-  html:
-    theme: 
-      - cosmo
-      - lmu-osc-custom.scss
-    css: 
-      - assets/bootstrap-grid.min.css
-      - https://raw.githubusercontent.com/lmu-osc/branding-resources/refs/heads/main/lmu-osc-styles.css
+  tutorial-template-html+tutorial:
+    css:
       - footer/footer-style.css
-    toc: true
-    fontsize: 13pt
-    code-overflow: wrap
-    code-link: true
-    grid:
-      sidebar-width: 300px
-    include-in-header:
-      - file: matomo-analytics.html
-    include-after-body:
-      - file: footer/footer.html
 # End Format
 
 # Begin Editor
 editor: source
 # End Editor
+
+bibliography: references.bib
