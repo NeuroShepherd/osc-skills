@@ -4,27 +4,23 @@
 #
 # Usage:
 #   ./install-skill.sh [-f] <skill-directory>
-#   ./install-skill.sh [-f] --link <skill-directory>
 #
-# Defaults to copying the skill directory into
+# Copies the skill directory into
 #   ~/.posit/assistant/skills/<skill-name>/
-# Use --link to symlink instead (may not be recognized by Posit Assistant).
 # Use -f or --force to overwrite an existing installation.
 
 set -euo pipefail
 
 usage() {
-    echo "Usage: $0 [-f] [--link] <skill-directory>" >&2
+    echo "Usage: $0 [-f] <skill-directory>" >&2
     exit 1
 }
 
 force=false
-link_mode=false
 skill_dir=""
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --link) link_mode=true; shift ;;
         -f|--force) force=true; shift ;;
         -h|--help) usage ;;
         -*)
@@ -72,12 +68,5 @@ fi
 
 mkdir -p "$HOME/.posit/assistant/skills"
 
-if "$link_mode"; then
-    abs_path=$(cd "$skill_dir" && pwd)
-    ln -s "$abs_path" "$target"
-    echo "Installed '$skill_name' (symlink) → $target → $abs_path"
-    echo "Note: Posit Assistant may not recognize symlinked skills; use a copy if it doesn't show up."
-else
-    cp -R "$skill_dir" "$target"
-    echo "Installed '$skill_name' (copy) → $target"
-fi
+cp -R "$skill_dir" "$target"
+echo "Installed '$skill_name' → $target"
