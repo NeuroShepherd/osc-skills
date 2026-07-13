@@ -3,7 +3,7 @@ name: osc-tutorial-conversion
 description: Instructions for converting existing OSC tutorials to match our `tutorial-template` repo
 metadata:
   author: Pat Callahan
-  version: 0.0.3
+  version: 0.0.4
 ---
 
 # OSC Tutorial Conversion
@@ -11,12 +11,35 @@ metadata:
 Your goal is to convert existing OSC tutorials to match the structure and style of our `tutorial-template` repo. This will ensure consistency across all tutorials and make it easier for users to follow along.
 
 1. Use the available [`.github` workflows](assets/.github/workflows) for CI/CD and testing, replacing existing workflows in the tutorials with these standardized ones as needed. Do not remove non-related workflows.
-2. Apply kebap case to all file names and directories. For example, `someFolder/My_Tutorial.md` should be renamed to `some-folder/my-tutorial.md`. Files in the `assets` directory should also follow this convention.
-3. For renamed Quarto and Markdown files, use the `aliases:` yaml field to allow redirects from the old path to the new one. Extending the previous example, you would use: `aliases: someFolder/My_Tutorial.md`.
-4. Update the references to all files and folders in the tutorials to reflect the new kebap case naming convention. This includes links, images, and any other references.
-5. Apply the [lmu-osc-custom.scss](assets/lmu-osc-custom.scss) and [styles.css](assets/styles.css) stylesheet to all tutorials. This will ensure a consistent look and feel across all tutorials. Prefer updating existing stylesheets rather than replacing them, to avoid losing any custom styles and git history.
+
+2. Apply kebab case to all file names and directories. For example, `someFolder/My_Tutorial.md` should be renamed to `some-folder/my-tutorial.md`. Files in the `assets` directory should also follow this convention.
+
+3. For renamed Quarto and Markdown files, use the `aliases:` YAML field to allow redirects from the old path to the new one. Extending the previous example, you would use: `aliases: someFolder/My_Tutorial.md`.
+
+4. Update the references to all files and folders in the tutorials to reflect the new kebab case naming convention. This includes links, images, and any other references.
+
+5. The `tutorial-template` Quarto extension now handles theming and branding (replacing the old `lmu-osc-custom.scss` and `styles.css`). Update the tutorial's `_quarto.yml` to use `type: tutorial-template` as the project type — see step 8 for the full template. Remove any references to the old standalone stylesheets. If the tutorial has custom styling that needs preserving, add it via the `format.tutorial-template-html+tutorial.css` section in `_quarto.yml`.
+
 6. Add the [footer folder](assets/footer/) to the tutorial.
+
 7. Add the [assets](assets/assets/) folder to the tutorial, or just the contents within it if the folder already exists. This will ensure that all necessary assets are included in the tutorial.
-8. Follow the conventions in [`_quarto.yml`](assets/_quarto.yml) for the tutorial's configuration. This includes settings for the title, author, date, and any other relevant metadata.
-9. Add the custom [404 page](assets/404.qmd) to the root of the project if not already present.
-10. Update the [.gitignore](assets/.gitignore) file to include any new files or directories that should be ignored by Git.
+
+8. Follow the conventions in [`_quarto.yml`](assets/_quarto.yml) for the tutorial's configuration. The template uses the `tutorial-template` project type (a Quarto extension) and includes:
+   - Website metadata: title, repo URL, page footer with copyright
+   - Navbar with Home and About links, plus GitHub and OSC icon tools
+   - Docked sidebar with Overview and topic sections
+   - Matomo analytics via `include-in-header`
+   - Footer via `include-after-body`
+   - A format override section for custom CSS if needed
+
+9. Add supporting configuration files from the assets folder:
+   - [`matomo-analytics.html`](assets/matomo-analytics.html) — required by `_quarto.yml`'s `include-in-header`
+   - [`CITATION.cff`](assets/CITATION.cff) — citation metadata template (fill in the placeholders)
+   - [`references.bib`](assets/references.bib) — bibliography file
+   - [`LICENSE.md`](assets/LICENSE.md) and [`LICENSE-CODE.md`](assets/LICENSE-CODE.md) — dual license files (CC BY-SA 4.0 for content, CC0 1.0 for code)
+
+10. Add the [`.filenameignore`](assets/.filenameignore) file if the tutorial doesn't have one. This is required by the `filename-check.yml` workflow to exclude certain paths from validation (e.g., `_extensions/`, `LICENSE` files, `README`).
+
+11. Add the custom [404 page](assets/404.qmd) to the root of the project if not already present.
+
+12. Update the [`.gitignore`](assets/.gitignore) file to include any new files or directories that should be ignored by Git.
