@@ -45,3 +45,5 @@ Your goal is to convert existing OSC tutorials to match the structure and style 
 1. Add the custom [404 page](assets/404.qmd) to the root of the project if not already present.
 
 1. Update the [`.gitignore`](assets/.gitignore) file to include any new files or directories that should be ignored by Git.
+
+1. Make sure the [`index.qmd`](assets/index.qmd) includes the callout tips to support the OSC and pose questions.
