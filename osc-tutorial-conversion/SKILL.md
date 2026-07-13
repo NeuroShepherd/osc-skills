@@ -35,7 +35,7 @@ Your goal is to convert existing OSC tutorials to match the structure and style 
    - A format override section for custom CSS if needed
 
 1. Add supporting configuration files from the assets folder:
-   - [`matomo-analytics.html`](assets/matomo-analytics.html) — required by `_quarto.yml`'s `include-in-header`
+   - [`matomo-analytics.html`](assets/matomo-analytics.html) — required by `_quarto.yml`'s `include-in-header`. Leave alone if this file already exists.
    - [`CITATION.cff`](assets/CITATION.cff) — citation metadata template (fill in the placeholders)
    - [`references.bib`](assets/references.bib) — bibliography file
    - [`LICENSE.md`](assets/LICENSE.md) and [`LICENSE-CODE.md`](assets/LICENSE-CODE.md) — dual license files (CC BY-SA 4.0 for content, CC0 1.0 for code)
