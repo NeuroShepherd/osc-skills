@@ -47,3 +47,5 @@ Your goal is to convert existing OSC tutorials to match the structure and style 
 1. Update the [`.gitignore`](assets/.gitignore) file to include any new files or directories that should be ignored by Git.
 
 1. Make sure the [`index.qmd`](assets/index.qmd) includes the callout tips to support the OSC and pose questions.
+
+1. Tell the user to also run the `/quarto-headers` skill to check their Quarto document headers.
