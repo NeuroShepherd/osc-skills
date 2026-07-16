@@ -15,3 +15,4 @@ Your objective is to check Quarto documents (`*.qmd`) for proper use of cascadin
 2. Maintain a strict hierarchy in the headers. Do not skip levels as this breaks accessibility structures and tables of contents.
 3. Always include a space after the trailing `#`.
 4. When updating headers, always make sure to also update the child headers nested within the affected parent. This should be done recursively so that all downstream headers are corrected.
+5. If a document has a level one header but no `title:`, move that level one header into the `title:` field.
