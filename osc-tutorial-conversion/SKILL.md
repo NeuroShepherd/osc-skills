@@ -14,9 +14,9 @@ Your goal is to convert existing OSC tutorials to match the structure and style 
 
 1. Use the available [`.github` workflows](assets/.github/workflows) for CI/CD and testing, replacing existing workflows in the tutorials with these standardized ones as needed. Do not remove non-related workflows.
 
-1. Apply kebab case to all file names and directories. For example, `someFolder/My_Tutorial.md` should be renamed to `some-folder/my-tutorial.md`. Files in the `assets` directory should also follow this convention. LICENSE, README, and CITATION files should not be renamed.
+1. Apply kebab case to all file names and directories. For example, `someFolder/My_Tutorial.qmd` should be renamed to `some-folder/my-tutorial.qmd`. Files in the `assets` directory should also follow this convention. LICENSE, README, and CITATION files should not be renamed.
 
-1. For renamed Quarto and Markdown files, use the `aliases:` YAML field to allow redirects from the old path to the new one. Extending the previous example, you would use: `aliases: someFolder/My_Tutorial.md`.
+1. For renamed Quarto and Markdown files, use the `aliases:` YAML field to allow redirects from the old path to the new one. Extending the previous example, you would use: `aliases: someFolder/My_Tutorial.html`. Note the use of `.html` rather than `.qmd`.
 
 1. Update the references to all files and folders in the tutorials to reflect the new kebab case naming convention. This includes links, images, and any other references.
 
