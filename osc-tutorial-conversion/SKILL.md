@@ -16,7 +16,7 @@ Your goal is to convert existing OSC tutorials to match the structure and style 
 
 1. Apply kebab case to all file names and directories. For example, `someFolder/My_Tutorial.qmd` should be renamed to `some-folder/my-tutorial.qmd`. Files in the `assets` directory should also follow this convention. LICENSE, README, and CITATION files should not be renamed.
 
-1. For renamed Quarto and Markdown files, use the `aliases:` YAML field to allow redirects from the old path to the new one. Extending the previous example, you would use: `aliases: someFolder/My_Tutorial.html`. Note the use of `.html` rather than `.qmd`.
+1. For renamed Quarto and Markdown files, use the `aliases:` YAML field to allow redirects from the old path to the new one. Extending the previous example, you would use: `aliases: [someFolder/My_Tutorial.html]`. Note the use of `.html` rather than `.qmd`, and the enclousure in an array.
 
 1. Update the references to all files and folders in the tutorials to reflect the new kebab case naming convention. This includes links, images, and any other references.
 
@@ -35,7 +35,7 @@ Your goal is to convert existing OSC tutorials to match the structure and style 
    - A format override section for custom CSS if needed
 
 1. Add supporting configuration files from the assets folder:
-   - [`matomo-analytics.html`](assets/matomo-analytics.html) — required by `_quarto.yml`'s `include-in-header`. Leave alone if this file already exists.
+   - [`matomo-analytics.html`](assets/matomo-analytics.html) — required by `_quarto.yml`'s `include-in-header`. Do not overwrite existing files if they already have tracking code. Do add in the conditional statement checking for localhost if it is not already present.
    - [`CITATION.cff`](assets/CITATION.cff) — citation metadata template (fill in the placeholders)
    - [`references.bib`](assets/references.bib) — bibliography file
    - [`LICENSE.md`](assets/LICENSE.md) and [`LICENSE-CODE.md`](assets/LICENSE-CODE.md) — dual license files (CC BY-SA 4.0 for content, CC0 1.0 for code)
