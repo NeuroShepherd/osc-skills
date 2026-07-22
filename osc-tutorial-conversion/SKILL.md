@@ -49,3 +49,5 @@ Your goal is to convert existing OSC tutorials to match the structure and style 
 1. Make sure the [`index.qmd`](assets/index.qmd) includes the callout tips to support the OSC and pose questions.
 
 1. Tell the user to also run the `/quarto-headers` skill to check their Quarto document headers.
+
+1. Fill in the citation information on the [about.qmd](assets/about.qmd) file using the CITATION.cff and other information available in the project.
