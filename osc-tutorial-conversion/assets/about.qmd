@@ -3,10 +3,11 @@ title: "About"
 date: YYYY-MM-DD
 citation:
   type: "webpage"
-  title: "TITLE HERE"
+  title: "TUTORIAL TITLE HERE"
   container-title: "LMU Open Science Center"
   url: https://lmu-osc.github.io/
   doi: "DOI HERE"
+  version: 0.0.1
 author:
   - name: AUTHOR 1
     roles: [conceptualization, data curation, formal analysis, funding acquisition, investigation, methodology, project administration, software, resources, supervision, validation, visualization, writing - original draft, writing - editing & review]
@@ -42,3 +43,10 @@ This tutorial was primarily written in YYYY using SOFTWARE-NAME SOFTWARE-VERSION
 ## Tutorial Template Quarto Extension
 
 This tutorial was written using the [`lmu-osc/tutorial-template`](https://github.com/lmu-osc/tutorial-template) Quarto extension [@callahan2026].
+
+::: {#refs}
+:::
+
+## How to Cite
+
+**To cite this tutorial, please refer to the project's [CITATION.cff](CITATION.cff) file or use the BibTeX citation provided in the appendix below.**
