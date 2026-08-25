@@ -9,6 +9,7 @@ description: A brief description of your tutorial (if you want to include this).
 #| echo: false
 #| warning: false
 library(downlit)
+library(xml2)
 ```
 
 THIS IS YOUR HOME PAGE FILE. DO NOT RENAME OR DELETE THIS FILE.
