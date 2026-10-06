@@ -1,0 +1,201 @@
+/* Title slide header styling: white text on full-width green background */
+.reveal section:first-of-type h1,
+.reveal section:first-of-type h2 {
+  background-color: #093;  /* LMU green background color for the title header */
+  color: white;               /* White text color for contrast against the green background */
+  padding: 0.05em 1em;         /* Padding for top/bottom (0.3em) and left/right (1em) to give spacing inside the header */
+  margin: 0 -1em;             /* Negative left/right margins to extend the header's background beyond the default padding */
+  width: calc(100% + 2em);    /* Expands the width of the header to cover the full slide width (including extra margin) */
+  border-radius: 10px;        /* Ensures the header background has sharp corners (no rounded edges) */
+  display: block;             /* Makes the header elements (h1, h2) behave as block elements, allowing full width */
+  text-align: center;         /* Centers the text inside the header (h1 and h2) */
+  box-sizing: border-box;     /* Ensures that padding is included within the width/height of the element, not added to it */
+}
+
+/* Styling for non-title slide headers: green background, white text, left-aligned */
+.reveal .slides section:not(:first-of-type) h1,
+.reveal .slides section:not(:first-of-type) h2 {
+  background-color: #093;  /* LMU green background for the header */
+  color: white;               /* Sets the text color to white for contrast against the green background */
+  font-size: 1.4em;
+  padding: 0.05em 1em;         /* Adds padding: 0.3em for top and bottom, 1em for left and right to give spacing around the header text */
+  margin: 0;                  /* Removes margin, ensuring the background color stretches fully across the width of the slide */
+  width: 100%;                /* Makes the background color cover the full width of the slide */
+  text-align: left;           /* Aligns the text to the left inside the header box */
+  border-radius: 10px;
+  border-bottom: 2px solid #D3D3D3;  /* Adds a grey horizontal line (light grey) below the header */
+  box-sizing: border-box;     /* Ensures that padding is included in the width calculation, so the header maintains the correct dimensions */
+}
+
+/* Adjust header font size on non-title slides */
+.reveal .slides section:not(:first-of-type) h1,
+.reveal .slides section:not(:first-of-type) h2 {
+  font-size: 1.6em;  /* Adjust as needed, default h1 is ~2em+ */
+}
+
+/* Subtitle styling (###): visually distinct, but less prominent than slide title (##) */
+.reveal .slides section:not(:first-of-type) h3 {
+  font-size: 0.87em;
+  font-weight: 500;
+  color: #0b5d2a;
+  background-color: rgba(0, 153, 51, 0.08);
+  padding: 0.15em 0.45em;
+  margin: 0 0 0.55em 0;
+  border-left: 4px solid #093;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Set font size on the list container only */
+.reveal .slides section:not(:first-of-type) ul,
+.reveal .slides section:not(:first-of-type) ol {
+  font-size: 0.8em;              /* Sets font size for both list bullets and text */
+  list-style-position: outside;  /* Ensures bullets are rendered outside the text block */
+}
+
+/* Reset font-size inheritance inside list items to avoid nesting issues */
+.reveal .slides section:not(:first-of-type) li {
+  font-size: inherit;            /* Forces li text to match parent font size exactly */
+}
+
+/* Ensure bolded text is both bold and dark blue */
+.reveal strong,
+.reveal b {
+  color: darkblue;        /* Set text color */
+  font-weight: bold;      /* Ensure bold styling is applied */
+}
+
+/* Grey text for notes  */
+.reveal .slides section:not(:first-of-type) .note {
+  color: #AAA;
+}
+
+/* Grey text for small notes */
+.reveal .slides section:not(:first-of-type) .smallnote {
+  font-size: 0.55em; 
+  color: #AAA;
+}
+
+/* Poster-like analogy box for emphasis slides */
+.reveal .callout-box {
+  background-color: #f7f7f7;
+  border: 3px solid #093;
+  border-radius: 14px;
+  padding: 0.5em 1.4em;
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0.2em auto;
+  max-width: 80%;
+}
+
+
+/* Single full-size centered image that stays within the slide content area */
+.reveal .img-full {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  max-height: 58vh;  /* 100vh minus approx. header (~12vh), subtitle (~6vh), footer (~5vh), padding */
+  object-fit: contain;
+}
+
+/* Vertically center content (especially images) inside a column
+Use as an inner wrapper inside a column: ::: {.img-vcenter}
+*/
+.reveal .img-vcenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.reveal .img-vcenter > p,
+.reveal .img-vcenter > figure,
+.reveal .img-vcenter > .quarto-figure {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.reveal .img-vcenter img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 56vh;
+  height: auto;
+  object-fit: contain;
+}
+
+/* drop-shadow for images */
+.reveal .ds {
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Constrain footer width so it does not run into the logo or the hamburger menu */
+.reveal .footer {
+  max-width: 75% !important;
+  left: 10% !important;
+  font-size: clamp(0.68rem, 1.1vw, 0.92rem) !important; /* 1.1vw is the preferred scaling factor */
+  line-height: 1.2 !important;
+  max-height: calc(2 * 1.2em) !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.reveal .footer p {
+  margin: 0 !important;
+}
+
+
+/* Highlight words */
+.reveal .slides .hl {
+  background-color: rgb(250, 239, 31)
+}
+
+/* smaller font size for long text */
+.reveal .smaller {
+  font-size: 85%;
+}
+
+/* smallest font size for very long text */
+.reveal .smallest {
+  font-size: 70%;
+}
+
+/* smaller blockquote text */
+.reveal blockquote {
+  font-size: 75%;
+}
+
+
+
+/* Timer styling: Small timers. (Base width = 300px)
+Apply to the entire slide:
+## Title {.small-timer}
+*/
+.reveal .slides section.small-timer .base-timer {
+  width: 200px;
+  height: 200px;
+}
+.reveal .slides section.small-timer .base-timer__label {
+  font-size: 2rem;
+}
+
+.reveal .slides section.smallest-timer .base-timer {
+  width: 100px;
+  height: 100px;
+}
+.reveal .slides section.small-timer .base-timer__label {
+  font-size: 1.2rem;
+}
+
+/* Center the base timer horizontally within its container */
+.reveal .base-timer {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
