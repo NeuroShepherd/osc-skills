@@ -3,34 +3,61 @@ name: osc-pptx-content-adaptation
 description: Instructions for editing existing Quarto `.qmd` files written for RevealJS so that PowerPoint output renders correctly without disrupting the RevealJS presentation
 metadata:
   author: Pat Callahan
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # OSC PowerPoint Content Adaptation
 
-Your goal is to take an existing Quarto document written primarily as RevealJS slides and make the smallest possible changes to the `.qmd` markup so that the PowerPoint (`.pptx`) output is acceptable, without disrupting the RevealJS experience. Where RevealJS and PowerPoint can both be satisfied by the same markup, prefer that; only add PowerPoint-specific content as a last resort.
+Your goal is to inspect and adapt an existing Quarto presentation (`.qmd`) written for RevealJS so that its PowerPoint (`.pptx`) output renders correctly using the LMU Open Science Center template, with minimal disruption to the RevealJS presentation.
 
-## Understanding PowerPoint Limitations & Behavior
+## Step-by-Step Adaptation Workflow
 
-The layouts available to PowerPoint are the ones defined in the template bundled with `osc-brand` (e.g., `Title and Content`, `Two Content`, `Comparison`, `Content with Caption`, and `Blank`). Quarto picks between them from the _structure_ of a slide rather than from styling. Restructuring a slide, not restyling it, is therefore how you change which layout it lands on.
+Execute this workflow systematically on the target `.qmd` file(s). For each slide/section, review the structure and apply the necessary fixes.
 
-- **`brand.yml` & Custom CSS/Sass:** Quarto's support for `brand.yml` and custom stylesheets does not extend to PowerPoint output. Do not rely on custom CSS rules or brand variables for PPTX formatting.
-- **Footers:** PowerPoint does not ignore footers; instead, footer content is incorrectly placed onto a new, separate slide. Avoid using `footer` in shared blocks or scope it appropriately.
-- **Alignment:** Formatting options like `fig-align` are ignored in PPTX.
-- **Vertical Alignment in Tables:** A table's default vertical alignment cannot be adjusted in the template `.pptx`.
+### Step 1: Scan and Fix Slide Headings (`#` vs `##`)
+- **Issue:** Level 1 headings (`#`) trigger full-screen **Section Header** slides in PowerPoint.
+- **Action:** Inspect all headings in the document. Convert any content slide headings from `#` to `##` so they map to standard content layouts. Reserve `#` strictly for major section breaks where a Section Header slide is intended.
 
-## Structural Rules & Layout Adjustments
+### Step 2: Check for Caption Layout Traps
+- **Issue:** Placing text followed by an image, figure, or table triggers the **Content with Caption** layout in PowerPoint.
+- **Action:** Check the order of elements on content slides. If an image, figure, or table follows text, either:
+  - Move the non-text element _above_ the text.
+  - Wrap the content in a two-column layout (`::: {.columns}` / `::: {.column}`) to prevent unwanted caption styling.
 
-1. **Headings:** `#` level headings trigger "Section Header" slides in PowerPoint. Ensure content slides use appropriate heading levels (`##`) or bullet lists.
+### Step 3: Handle Multiple Images, Figures, or Tables
+- **Issue:** Text followed by multiple images, figures, or tables causes PowerPoint to automatically split them across untitled, fragmented slides.
+- **Action:** Refactor slides containing multiple media/table elements into a multi-column layout (`::: {.columns}`) or the **Comparison** layout structure.
 
-2. **Tables:** Replace HTML tables with markdown tables, aiming to preserve the style as closely as possible. If this cannot be done reliably, create a separate PowerPoint-only table using conditional blocks.
+### Step 4: Convert or Isolate Tabsets
+- **Issue:** Quarto's `.panel-tabset` collapses all tabs into a single stacked slide in PowerPoint.
+- **Action:** For any slide utilizing `.panel-tabset`, use conditional content blocks to provide separate slides for PowerPoint:
+  ```markdown
+  ::: {.content-visible when-format="revealjs"}
+  ::: {.panel-tabset}
+  ## Tab 1
+  Content 1
 
-3. **Caption Layout Trap:** Avoid triggering the "Content with Caption" layout. It is selected whenever text is followed by a non-text element — namely an image, figure, or table. Order matters: an image, figure, or table followed by text does _not_ trigger this layout, so prefer putting these elements first. The better option is usually to use a column layout instead.
+  ## Tab 2
+  Content 2
+  :::
+  :::
 
-4. **Multiple Images / Figures:** Watch for slides with text followed by multiple image, figure, or table elements. PowerPoint splits these into untitled, split-off slides. Use a column layout or the `Comparison` layout to keep everything structured properly.
+  ::: {.content-visible when-format="pptx"}
+  ## Tab 1 (PPTX Slide)
+  Content 1
 
-5. **Tabsets:** `.panel-tabset` collapses all panels into a single stacked slide in PowerPoint. Use conditional blocks to split tabsets into separate slides or provide alternative layouts for PPTX.
+  ## Tab 2 (PPTX Slide)
+  Content 2
+  :::
+  ```
 
-6. **Conditional Content (`.content-visible`):** Use `::: {.content-visible when-format="pptx"}` (and corresponding `when-format="revealjs"` or negative selectors) as the standard pattern to handle content that needs to split or diverge between formats, such as breaking tabsets into separate slides or providing PPTX-only table alternatives.
+### Step 5: Replace HTML Tables & Check Alignment
+- **Issue:** HTML tables may not style correctly, table vertical alignment cannot be modified in the template, and `fig-align` options are ignored.
+- **Action:** 
+  - Ensure tables are written in clean Markdown format.
+  - If an HTML table is too complex, provide a PPTX-specific markdown alternative using `::: {.content-visible when-format="pptx"}`.
+  - Remove or scope `fig-align` and custom footers (note that footers placed in shared blocks will render as separate standalone slides in PowerPoint).
 
-7. **Final Verification:** Render to PowerPoint to confirm the output is acceptable before finishing.
+### Step 6: Render and Verify
+- **Issue:** Assumptions about layout mapping must be verified against actual generated `.pptx` output.
+- **Action:** Run `quarto render` for both formats and inspect the generated PowerPoint output to ensure no unexpected split slides or layout traps remain.
