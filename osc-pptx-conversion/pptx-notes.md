@@ -22,7 +22,7 @@
 * To each format, add the `output-file` yaml arg, and make it so the file name is `repoName-outputName.outputExt`. For example, the RevealJS output for a repo named `hello-there` would be `hello-there-revealjs.html`.
     - For formats from an extension, namely from the `osc-brand` extension, do not include the `osc-brand` text anywhere in the name. That will be redundant and too long
 * Put the CSL and references.bib files at `/assets` and make sure they are properly referenced from the qmd file
-* Make sure the first `format` entry is `html`
+* Make sure the first `format` entry is `osc-brand-html` (requires the osc-brand extension to already be installed) with `toc: true` added as an entry for just this format
 * Add the following Quarto extensions
     - mcanouil/quarto-revealjs-tabset
     - nicebread/quarto-timer
