@@ -1,0 +1,75 @@
+# Begin Project
+project:
+  type: tutorial-template
+  # FYI: the tutorial-template project type is defined in the lmu-osc/tutorial-template extension
+# End Project
+
+# Begin Website
+repo-url: https://github.com/lmu-osc/REPO-NAME-HERE # REPLACE WITH YOUR REPO URL
+website:
+  title: "TUTORIAL TITLE HERE"
+  page-footer:
+    border: false
+    center: © YYYY Max Mustermann, Erika Musterfrau, AUTHOR NAME. Published by LMU Open Science Center. Licensed under CC BY-SA 4.0.
+  repo-url: https://github.com/lmu-osc/REPO-NAME-HERE
+
+  navbar:
+    right:
+      - about.qmd
+    left:
+      - href: index.qmd
+        text: Home
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            href: https://github.com/REPO-NAME-HERE
+          - text: Report a Bug
+            href: https://github.com/REPO-NAME-HERE/issues
+      - icon: house-heart
+        url: https://www.osc.lmu.de/
+
+  sidebar:
+    style: "docked"
+    contents:
+      - text: "Overview"
+        href: index.qmd
+      - section: "TOPIC 1"
+        href: topic-one/index.qmd
+        contents:
+          - href: topic-one/page-one.qmd
+            text: Example of Overriden Title # You can override the page title here if you want to, otherwise it will use the page title from the qmd file
+          - href: topic-one/page-two.qmd
+            # text: "topic-one Page 2 Title"
+      - section: "TOPIC 2"
+        href: topic-two/index.qmd
+        contents:
+          - href: topic-two/page-one.qmd
+            # text: "topic-two Page 1 Title"
+          - href: topic-two/page-two.qmd
+            # text: "topic-two Page 2 Title"
+          - href: topic-two/page-three.qmd
+            # text: "topic-two Page 3 Title"
+# End Website
+
+# Begin Includes
+include-in-header:
+  - file: matomo-analytics.html
+# End Includes
+
+# Begin Format
+# use only if needed. the default format for `tutorial-template` projects is tutorial-template-html+tutorial
+# we recommend just extending the definition below if you need to make format changes
+format:
+  tutorial-template-html+tutorial:
+    css:
+      - footer/footer-style.css
+    include-after-body:
+      - file: footer/footer.html
+# End Format
+
+# Begin Editor
+editor: source
+# End Editor
+
+bibliography: references.bib
