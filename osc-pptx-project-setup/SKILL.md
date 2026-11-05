@@ -29,7 +29,7 @@ Your goal is to configure a Quarto slide repository so that it correctly builds 
 
 1. **Format Order & TOC:** Make sure the first `format` entry in the YAML is `osc-brand-html` (which requires the `osc-brand` extension), and add `toc: true` as an entry for just this format.
 
-1. **Output Filenames:** To each format, add the `output-file` YAML argument, naming the file `repoName-outputName.outputExt`. For example, for a repo named `hello-there` the RevealJS output is `hello-there-revealjs.html` and the PowerPoint output is `hello-there-pptx.pptx`. For formats that come from an extension (`osc-brand`), do not include the `osc-brand` text anywhere in the name; that would be redundant and too long.
+1. **Output Filenames:** To each format, add the `output-file` YAML argument, naming the file `repoName(-outputName).outputExt`, including the `-outputName` only when necessary due to conflicts. For example, for a repo named `hello-there` the RevealJS output is `hello-there-revealjs.html` and the PowerPoint output is `hello-there.pptx`. For formats that come from an extension (`osc-brand`), do not include the `osc-brand` text anywhere in the name; that would be redundant and too long.
 
 1. **Required Extensions:** Add the following Quarto extensions:
    - `mcanouil/quarto-revealjs-tabset`
